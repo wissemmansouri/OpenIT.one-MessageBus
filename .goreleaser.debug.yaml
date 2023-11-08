@@ -1,0 +1,148 @@
+project_name: openit-message-bus
+before:
+  hooks:
+    - go generate
+    - go run github.com/google/go-licenses@latest check . --disallowed_types=restricted
+    - go mod tidy
+    - go test -race -v ./...
+builds:
+  - id: openit-message-bus-amd64
+    binary: build/sysroot/usr/bin/openit-message-bus
+    env:
+      - CC=x86_64-linux-gnu-gcc
+    gcflags:
+      - all=-N -l
+    ldflags:
+      - -extldflags "-static"
+    tags:
+      - musl
+      - netgo
+      - osusergo
+    goos:
+      - linux
+    goarch:
+      - amd64
+  - id: openit-message-bus-arm64
+    binary: build/sysroot/usr/bin/openit-message-bus
+    env:
+      - CC=aarch64-linux-gnu-gcc
+    gcflags:
+      - all=-N -l
+    ldflags:
+      - -extldflags "-static"
+    tags:
+      - musl
+      - netgo
+      - osusergo
+    goos:
+      - linux
+    goarch:
+      - arm64
+  - id: openit-message-bus-arm-7
+    binary: build/sysroot/usr/bin/openit-message-bus
+    env:
+      - CC=arm-linux-gnueabihf-gcc
+    gcflags:
+      - all=-N -l
+    ldflags:
+      - -extldflags "-static"
+    tags:
+      - musl
+      - netgo
+      - osusergo
+    goos:
+      - linux
+    goarch:
+      - arm
+    goarm:
+      - "7"
+  - id: openit-message-bus-migration-tool-amd64
+    binary: build/sysroot/usr/bin/openit-message-bus-migration-tool
+    main: ./cmd/migration-tool
+    env:
+      - CC=x86_64-linux-gnu-gcc
+    gcflags:
+      - all=-N -l
+    ldflags:
+      - -extldflags "-static"
+    tags:
+      - musl
+      - netgo
+      - osusergo
+    goos:
+      - linux
+    goarch:
+      - amd64
+  - id: openit-message-bus-migration-tool-arm64
+    binary: build/sysroot/usr/bin/openit-message-bus-migration-tool
+    main: ./cmd/migration-tool
+    env:
+      - CC=aarch64-linux-gnu-gcc
+    gcflags:
+      - all=-N -l
+    ldflags:
+      - -extldflags "-static"
+    tags:
+      - musl
+      - netgo
+      - osusergo
+    goos:
+      - linux
+    goarch:
+      - arm64
+  - id: openit-message-bus-migration-tool-arm-7
+    binary: build/sysroot/usr/bin/openit-message-bus-migration-tool
+    main: ./cmd/migration-tool
+    env:
+      - CC=arm-linux-gnueabihf-gcc
+    gcflags:
+      - all=-N -l
+    ldflags:
+      - -extldflags "-static"
+    tags:
+      - musl
+      - netgo
+      - osusergo
+    goos:
+      - linux
+    goarch:
+      - arm
+    goarm:
+      - "7"
+archives:
+  - name_template: >-
+      {{ .Os }}-{{- if eq .Arch "arm" }}arm-7{{- else }}{{ .Arch }}{{- end }}-{{ .ProjectName }}-v{{ .Version }}
+    id: openit-message-bus
+    builds:
+      - openit-message-bus-amd64
+      - openit-message-bus-arm64
+      - openit-message-bus-arm-7
+    files:
+      - build/**/*
+  - name_template: >-
+      {{ .Os }}-{{- if eq .Arch "arm" }}arm-7{{- else }}{{ .Arch }}{{- end }}-{{ .ProjectName }}-migration-tool-v{{ .Version }}
+    id: openit-message-bus-migration-tool
+    builds:
+      - openit-message-bus-migration-tool-amd64
+      - openit-message-bus-migration-tool-arm64
+      - openit-message-bus-migration-tool-arm-7
+    files:
+      - build/sysroot/etc/**/*
+checksum:
+  name_template: "checksums.txt"
+snapshot:
+  name_template: "{{ incpatch .Version }}-snapshot"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+release:
+  github:
+    owner: wissemmansouri
+    name: OpenIT.one-MessageBus
+  draft: true
+  prerelease: auto
+  mode: replace
+  name_template: "v{{ .Version }}"
