@@ -1,7 +1,7 @@
 package main
 
 import (
-	interfaces "github.com/wissemmansouri/OpenIR.one-Common"
+	interfaces "github.com/wissemmansouri/OpenIT.one-Common"
 )
 
 type migrationTool struct{}
