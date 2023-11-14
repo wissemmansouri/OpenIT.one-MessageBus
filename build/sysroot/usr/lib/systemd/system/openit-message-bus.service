@@ -1,0 +1,13 @@
+[Unit]
+After=openit-gateway.service
+Description=OpenIT.one Message Bus Service
+
+[Service]
+ExecStartPre=/usr/bin/openit-message-bus -v
+ExecStart=/usr/bin/opent-message-bus -c /etc/openit/message-bus.conf
+PIDFile=/var/run/openit/message-bus.pid
+Restart=always
+Type=notify
+
+[Install]
+WantedBy=multi-user.target
