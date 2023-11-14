@@ -3,7 +3,7 @@ package repository
 import (
 	"time"
 
-	"github.com/wissemmansouri/OpenIT-MessageBus/model"
+	"github.com/wissemmansouri/OpenIT.one-MessageBus/model"
 	"github.com/glebarez/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
