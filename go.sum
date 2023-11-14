@@ -1,4 +1,5 @@
-github.com/wissemmansouri/OpenIT.one-Common v0.4.4-alpha2
+github.com/wissemmansouri/OpenIT.one-Common v0.4.4-alpha2 h1:EIuQbVpuU2QZVui+ApYCEt27qGCUaQhgHCdOeHmgAwc=
+github.com/wissemmansouri/OpenIT.one-Common v0.4.4-alpha2/go.mod h1:iv6fJJs7IKv1tSrsbyA3Fq9xfeKNoaxhqA6IQUBeg9Q=
 github.com/RaveNoX/go-jsoncommentstrip v1.0.0/go.mod h1:78ihd09MekBnJnxpICcwzCMzGrKSKYe4AqU6PDYYpjk=
 github.com/andybalholm/brotli v1.0.1/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/andybalholm/brotli v1.0.5 h1:8uQZIdzKmjc/iuPu7O2ioW48L81FgatrcpfFmiq/cCs=
