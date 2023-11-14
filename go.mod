@@ -1,4 +1,4 @@
-module github.com/IceWhaleTech/CasaOS-MessageBus
+module github.com/wissemmansouri/OpenIT.one-MessageBus
 
 go 1.20
 
